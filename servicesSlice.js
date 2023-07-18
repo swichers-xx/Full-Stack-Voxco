@@ -1,5 +1,16 @@
 // servicesSlice.js
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { getServices } from './servicesApi';
 
+export const fetchServices = createAsyncThunk(
+  'services/fetch',
+  async () => {
+    const services = await getServices();
+    return services; 
+  }
+);
+
+// Slice code...
 export const fetchServices = createAsyncThunk('services/fetch', async () => {
   const response = await fetch('/api/services');
   return response.json();
