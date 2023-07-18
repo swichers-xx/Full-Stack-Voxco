@@ -2,7 +2,8 @@
 
 const express = require('express');
 const ps = require('powershell'); // powershell wrapper package
-
+const serverUtils = require('./utils/server'); 
+const serviceUtils = require('./utils/services'); 
 const app = express();
 
 // API to get disk space
@@ -42,7 +43,63 @@ app.post('/api/startService', async (req, res) => {
 
 });
 
-// and so on for other APIs...
+router.get('/servers', getServers);  
+
+// GET single server by id
+// Access at GET /servers/:id
+router.get('/servers/:id', getServer);  
+
+// POST create new server
+// Access at POST /servers
+router.post('/servers', createServer);
+
+// Service routes
+
+// GET all services 
+// Access at GET /services
+router.get('/services', getServices);
+
+// POST stop service by id
+// Access at POST /services/:id/stop
+router.post('/services/:id/stop', stopService);
+
+// Route handlers
+
+// Get all servers from utils and return JSON response
+async function getServers(req, res) {
+  const servers = await serverUtils.getServers();
+  res.json(servers);
+}
+
+// Get single server by id from utils and return JSON response 
+async function getServer(req, res) {
+  const id = req.params.id; 
+  const server = await serverUtils.getServer(id);
+  res.json(server);
+}
+
+// Create server from request body and return JSON response
+async function createServer(req, res) {
+  // Input validation would go here  
+  const server = await serverUtils.createServer(req.body);
+  res.status(201).json(server);
+}
+
+// Get all services from utils and return JSON response
+async function getServices(req, res) {
+  const services = await serviceUtils.getServices();
+  res.json(services);
+} 
+
+// Stop service by id using utils and return response
+async function stopService(req, res) {
+  const id = req.params.id;
+  await serviceUtils.stopService(id);
+  res.send('Service stopped');  
+}
+
+// Export router as module
+module.exports = router;
 
 // containerize
 docker build -t server .
