@@ -60,3 +60,24 @@ const ServiceLabel = ({name, status}) => {
     </span>
   )
 }
+// Apply class based on status 
+const statusColor = {
+  up: 'green',
+  down: 'red'
+};
+
+const ServerLabel = ({name, status}) => {
+  return (
+    <span className={`server ${statusColor[status]}`}>
+      {name}
+    </span>
+  )
+}
+
+const ServiceLabel = ({name, status}) => {
+  return (
+    <span className={`service ${statusColor[status]}`}>
+     {name}
+    </span>
+  ) 
+}
