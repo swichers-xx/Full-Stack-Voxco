@@ -2,7 +2,7 @@
 
 import React from 'react'; 
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';s
 
 // Other imports...
 
@@ -92,4 +92,7 @@ const ServiceLabel = ({name, status}) => {
      {name}
     </span>
   ) 
+}
+if(status === 'failed') {
+  return <ErrorMessage error={error} />
 }
