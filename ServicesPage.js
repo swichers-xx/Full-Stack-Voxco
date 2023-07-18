@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchServices } from './servicesSlice';
 
+import { fetchServices } from './servicesSlice';
+import ServiceList from './ServiceList';
 const dispatch = useDispatch();
 
 useEffect(() => {
@@ -25,6 +27,13 @@ const ServicesPage = () => {
     };
     fetchServices();
   }, []);
+  const services = useSelector(state => state.services);
 
-  // render UI
+  return (
+    <div>
+      <h1>Services</h1>
+      <ServiceList services={services} />
+    </div>
+  );
+}s
 }
