@@ -1,5 +1,17 @@
 // services.api.js
+// services.api.js
 
+const getVoxcoServices = async () => {
+
+  const allServices = await getServices(); 
+
+  const voxcoServices = allServices.filter(service => 
+    service.name.includes('Voxco')
+  );
+
+  return voxcoServices;
+
+}
 const getServices = async () => {
   const services = db.getServices();
 
