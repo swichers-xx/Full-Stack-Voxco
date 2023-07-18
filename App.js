@@ -1,3 +1,15 @@
+// App.js
+
+import React from 'react'; 
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Other imports...
+
+export default function App() {
+  // Component code...
+}
+
 // Get server status on load
 useEffect(() => {
   const fetchData = async () => {
