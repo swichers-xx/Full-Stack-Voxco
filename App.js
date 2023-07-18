@@ -80,7 +80,7 @@ const statusColor = {
 
 const ServerLabel = ({name, status}) => {
   return (
-    <span className={`server ${statusColor[status]}`}>
+    <span className={`server ${status === 'up' ? 'green' : 'red'}`}>
       {name}
     </span>
   )

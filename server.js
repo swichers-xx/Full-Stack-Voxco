@@ -43,6 +43,17 @@ app.post('/api/startService', async (req, res) => {
 
 });
 
+// API to restart all Voxco services
+app.post('/api/restartVoxcoServices', async (req, res) => {
+
+  const psCmd = `Get-Service | Where-Object { $_.Name -like '*Voxco*' } | Restart-Service`;
+
+  await ps.execute(psCmd);
+
+  res.send('All Voxco services restarted');
+
+});
+
 router.get('/servers', getServers);  
 
 // GET single server by id

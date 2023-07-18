@@ -1,0 +1,12 @@
+{
+  "name": "voxbro",
+  "version": "1.0.0",
+  "description": "This project is a full-stack application for managing Windows servers and services. It provides functionality to restart services with 'Voxco' in the name and highlights powered off servers in red and up servers in green.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
