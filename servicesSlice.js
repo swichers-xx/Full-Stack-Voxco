@@ -9,7 +9,12 @@ export const fetchServices = createAsyncThunk(
     return services; 
   }
 );
-
+extraReducers: {
+  [fetchServices.rejected]: (state, action) => {
+    state.status = 'failed';
+    state.error = action.error; 
+  }
+}
 // Slice code...
 export const fetchServices = createAsyncThunk('services/fetch', async () => {
   const response = await fetch('/api/services');
